@@ -4,12 +4,24 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
-public class driveSub extends SubsystemBase {
+public class cannonSub extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  public driveSub() {}
+  public cannonSub() {}
+
+ 
+  //solonoid declaration  
+  Solenoid bar1 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.LEFT_BARREL);
+  Solenoid bar2 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.MIDDLE_BARREL);
+  Solenoid bar3 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.RIGHT_BARREL);
+  WPI_TalonSRX arm = new WPI_TalonSRX(Constants.ARM_MOTOR);
 
   /**
    * Example command factory method.

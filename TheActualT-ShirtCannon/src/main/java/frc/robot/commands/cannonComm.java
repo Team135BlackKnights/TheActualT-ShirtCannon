@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /** An example command that uses an example subsystem. */
 public class cannonComm extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final cannonSub m_subsystem;
+  private final cannonSub cannonSub;
 
   /**
    * Creates a new ExampleCommand.
@@ -18,7 +18,7 @@ public class cannonComm extends CommandBase {
    * @param subsystem The subsystem used by this command.
    */
   public cannonComm(cannonSub subsystem) {
-    m_subsystem = subsystem;
+    cannonSub = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -30,7 +30,29 @@ public class cannonComm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+    if((RobotContainer.controller1.getLeftBumper() == true) && (RobotContainer.controller1.getRightBumper() == true)&&(RobotContainer.controller1.getBButton()==true)){
+      cannonSub.bar1.set(true);
+      bar3.set(false);
+      bar5.set(false);
+
+    }
+    //barrel 3
+    else if((RobotContainer.controller1.getXButton()==true )&& (RobotContainer.controller1.getRightBumper() == true) && (RobotContainer.controller1.getLeftBumper() == true) ){
+      bar1.set(false);
+      bar3.set(true);
+      bar5.set(false);
+    }
+    //barrel 1
+    else if((RobotContainer.controller1.getAButton()==true )&& (RobotContainer.controller1.getRightBumper() == true)&& (RobotContainer.controller1.getLeftBumper() == true)  ){
+      bar1.set(false);
+      bar3.set(false);
+      bar5.set(true);
+    }
+    else{
+      bar1.set(false);
+      bar2.set(false);
+      bar3.set(false);
+    }
   }
 
   // Called once the command ends or is interrupted.

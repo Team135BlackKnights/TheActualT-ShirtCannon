@@ -5,7 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -26,10 +26,10 @@ public class driveSub extends SubsystemBase {
   MotorControllerGroup leftSide = new MotorControllerGroup(frontLeft, backLeft);
   MotorControllerGroup rightSide = new MotorControllerGroup(frontRight, backRight);
 
-  DifferentialDrive tankDrive = new DifferentialDrive(leftDrive, rightDrive);
+  DifferentialDrive tankDrive = new DifferentialDrive(leftSide, rightSide);
 
   public void tankDrive(double left, double right){
     tankDrive(left, right);
   }
-  
+
 }

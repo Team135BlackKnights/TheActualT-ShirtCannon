@@ -30,7 +30,7 @@ public class cannonComm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    //moving the arm
     if((RobotContainer.controller1.getPOV()) == 0){
 
       cannonSub.arm.set(-.75);
@@ -43,25 +43,25 @@ public class cannonComm extends CommandBase {
     else{
       cannonSub.arm.set(0);
     }
-
+    //left barrel
     if((RobotContainer.controller1.getLeftBumper() == true) && (RobotContainer.controller1.getRightBumper() == true)&&(RobotContainer.controller1.getBButton()==true)){
       cannonSub.bar1.set(true);
       cannonSub.bar2.set(false);
       cannonSub.bar3.set(false);
-
+    //middle barrel
     }
-    //barrel 3
     else if((RobotContainer.controller1.getXButton()==true )&& (RobotContainer.controller1.getRightBumper() == true) && (RobotContainer.controller1.getLeftBumper() == true) ){
       cannonSub.bar1.set(false);
       cannonSub.bar2.set(true);
       cannonSub.bar3.set(false);
     }
-    //barrel 1
+    //right barrel
     else if((RobotContainer.controller1.getAButton()==true )&& (RobotContainer.controller1.getRightBumper() == true)&& (RobotContainer.controller1.getLeftBumper() == true)  ){
       cannonSub.bar1.set(false);
       cannonSub.bar2.set(false);
       cannonSub.bar3.set(true);
     }
+    //safties not pressed
     else{
       cannonSub.bar1.set(false);
       cannonSub.bar2.set(false);

@@ -30,28 +30,42 @@ public class cannonComm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    if((RobotContainer.controller1.getPOV()) == 0){
+
+      cannonSub.arm.set(-.75);
+    }
+    
+    else if(RobotContainer.controller1.getPOV() ==180 )
+    {
+      cannonSub.arm.set(.75);
+    }
+    else{
+      cannonSub.arm.set(0);
+    }
+
     if((RobotContainer.controller1.getLeftBumper() == true) && (RobotContainer.controller1.getRightBumper() == true)&&(RobotContainer.controller1.getBButton()==true)){
       cannonSub.bar1.set(true);
-      bar3.set(false);
-      bar5.set(false);
+      cannonSub.bar2.set(false);
+      cannonSub.bar3.set(false);
 
     }
     //barrel 3
     else if((RobotContainer.controller1.getXButton()==true )&& (RobotContainer.controller1.getRightBumper() == true) && (RobotContainer.controller1.getLeftBumper() == true) ){
-      bar1.set(false);
-      bar3.set(true);
-      bar5.set(false);
+      cannonSub.bar1.set(false);
+      cannonSub.bar2.set(true);
+      cannonSub.bar3.set(false);
     }
     //barrel 1
     else if((RobotContainer.controller1.getAButton()==true )&& (RobotContainer.controller1.getRightBumper() == true)&& (RobotContainer.controller1.getLeftBumper() == true)  ){
-      bar1.set(false);
-      bar3.set(false);
-      bar5.set(true);
+      cannonSub.bar1.set(false);
+      cannonSub.bar2.set(false);
+      cannonSub.bar3.set(true);
     }
     else{
-      bar1.set(false);
-      bar2.set(false);
-      bar3.set(false);
+      cannonSub.bar1.set(false);
+      cannonSub.bar2.set(false);
+      cannonSub.bar3.set(false);
     }
   }
 

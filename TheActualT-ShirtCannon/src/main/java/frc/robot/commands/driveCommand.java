@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
-
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.driveSub;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -29,7 +29,11 @@ public class driveCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    double left = RobotContainer.m_driverController.getLeftY();
+    double right = RobotContainer.m_driverController.getRightY();
+    m_subsystem.tankDrive(left, right);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

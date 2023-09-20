@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /** An example command that uses an example subsystem. */
 public class driveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final driveSub m_subsystem;
+  private final driveSub driveSub;
 
   /**
    * Creates a new ExampleCommand.
@@ -18,7 +18,7 @@ public class driveCommand extends CommandBase {
    * @param subsystem The subsystem used by this command.
    */
   public driveCommand(driveSub subsystem) {
-    m_subsystem = subsystem;
+    driveSub = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -32,16 +32,8 @@ public class driveCommand extends CommandBase {
   public void execute() {
     double left = RobotContainer.controller1.getLeftY();
     double right = RobotContainer.controller1.getRightY();
-    m_subsystem.tankDrive(left, right);
+    driveSub.tankDrive(left, right);
   }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+  
 }

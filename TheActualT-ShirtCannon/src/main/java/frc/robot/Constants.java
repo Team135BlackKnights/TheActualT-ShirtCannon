@@ -21,9 +21,9 @@ public final class Constants {
   //extra motor variable:
   public static int ARM_MOTOR = 19;
   //solonoid cannons
-  public static int LEFT_BARREL = 20;
-  public static int MIDDLE_BARREL = 21;
-  public static int RIGHT_BARREL = 22;
+  public static int LEFT_BARREL = 1;
+  public static int MIDDLE_BARREL = 3;
+  public static int RIGHT_BARREL = 5;
 
 
   public static class OperatorConstants {

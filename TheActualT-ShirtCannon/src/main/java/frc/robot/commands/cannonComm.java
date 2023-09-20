@@ -44,7 +44,7 @@ public class cannonComm extends CommandBase {
       cannonSub.arm.set(0);
     }
     //left barrel
-    if((RobotContainer.controller1.getLeftBumper() == true) && (RobotContainer.controller1.getRightBumper() == true)&&(RobotContainer.controller1.getBButton()==true)){
+    if((RobotContainer.controller1.getBButton()==true) && (RobotContainer.controller1.getRightBumper() == true)&&(RobotContainer.controller1.getLeftBumper() == true)){
       cannonSub.bar1.set(true);
       cannonSub.bar2.set(false);
       cannonSub.bar3.set(false);

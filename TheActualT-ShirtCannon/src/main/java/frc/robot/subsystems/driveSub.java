@@ -26,7 +26,7 @@ public class driveSub extends SubsystemBase {
   DifferentialDrive tankDrive = new DifferentialDrive(leftSide, rightSide);
 
   public void tankDrive(double left, double right){
-    tankDrive(left, right);
+    tankDrive.tankDrive(left, right);
   }
 
 }

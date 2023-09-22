@@ -16,7 +16,7 @@ public final class Constants {
     //motors
   public static int FRONT_LEFT_MOTOR = 10;
   public static int BACK_LEFT_MOTOR = 11;
-  public static int FRONT_RIGHT_MOTOR = 12;
+  public static int FRONT_RIGHT_MOTOR = 15;
   public static int BACK_RIGHT_MOTOR = 13;
   //extra motor variable:
   public static int ARM_MOTOR = 19;

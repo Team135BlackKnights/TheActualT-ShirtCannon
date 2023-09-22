@@ -44,19 +44,19 @@ public class cannonComm extends CommandBase {
       cannonSub.arm.set(0);
     }
     //left barrel
-    if((RobotContainer.controller1.getBButton()==true) && (RobotContainer.controller1.getRightBumper() == true)&&(RobotContainer.controller1.getLeftBumper() == true)){
+    if((RobotContainer.controller1.getXButton()==true) && (RobotContainer.controller1.getRightBumper() == true)&&(RobotContainer.controller1.getLeftBumper() == true)){
       cannonSub.bar1.set(true);
       cannonSub.bar2.set(false);
       cannonSub.bar3.set(false);
     //middle barrel
     }
-    else if((RobotContainer.controller1.getXButton()==true )&& (RobotContainer.controller1.getRightBumper() == true) && (RobotContainer.controller1.getLeftBumper() == true) ){
+    else if((RobotContainer.controller1.getAButton()==true )&& (RobotContainer.controller1.getRightBumper() == true) && (RobotContainer.controller1.getLeftBumper() == true) ){
       cannonSub.bar1.set(false);
       cannonSub.bar2.set(true);
       cannonSub.bar3.set(false);
     }
     //right barrel
-    else if((RobotContainer.controller1.getAButton()==true )&& (RobotContainer.controller1.getRightBumper() == true)&& (RobotContainer.controller1.getLeftBumper() == true)  ){
+    else if((RobotContainer.controller1.getBButton()==true )&& (RobotContainer.controller1.getRightBumper() == true)&& (RobotContainer.controller1.getLeftBumper() == true)  ){
       cannonSub.bar1.set(false);
       cannonSub.bar2.set(false);
       cannonSub.bar3.set(true);

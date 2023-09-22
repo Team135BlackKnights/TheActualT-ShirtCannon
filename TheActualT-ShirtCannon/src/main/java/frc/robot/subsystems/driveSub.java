@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class driveSub extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
-  public driveSub() {}
 
   //Drive Motors
   public final WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR);
@@ -24,6 +22,11 @@ public class driveSub extends SubsystemBase {
   MotorControllerGroup rightSide = new MotorControllerGroup(frontRight, backRight);
 
   DifferentialDrive tankDrive = new DifferentialDrive(leftSide, rightSide);
+
+  /** Creates a new ExampleSubsystem. */
+  public driveSub() {
+    leftSide.setInverted(true);
+  }
 
   public void tankDrive(double left, double right){
     tankDrive.tankDrive(left, right);

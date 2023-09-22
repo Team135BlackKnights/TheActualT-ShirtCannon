@@ -26,9 +26,16 @@ public class lightsComm extends CommandBase {
     AddressableLEDBuffer m_LedBuffer = new AddressableLEDBuffer(60);
     m_led.setLength(m_LedBuffer.getLength());
     //set the data and start the leds
+    //NOTE: Before setting the data, you need to declare the light values either through a function/method (most likely from a subsystem) or a loop (loop is hardcoding one color, function/method is possibly changable)
     m_led.setData(m_LedBuffer);
     m_led.start();
   }
+/**
+  @Override
+  public Object testingMethod(){
 
-  
+    return null;
+  }
+
+   */
 }

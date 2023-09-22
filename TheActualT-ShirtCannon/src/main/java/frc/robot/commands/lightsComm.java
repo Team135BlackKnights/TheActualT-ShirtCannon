@@ -5,6 +5,7 @@
 package frc.robot.commands;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.lights;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -12,9 +13,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /** An example command that uses an example subsystem. */
 public class lightsComm extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  
+  private final lights lights;
 
-  
+  public lightsComm(lights subsystem) {
+    lights = subsystem;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(subsystem);
+  }
 
   
   // Called every time the scheduler runs while the command is scheduled.
@@ -27,15 +32,9 @@ public class lightsComm extends CommandBase {
     m_led.setLength(m_LedBuffer.getLength());
     //set the data and start the leds
     //NOTE: Before setting the data, you need to declare the light values either through a function/method (most likely from a subsystem) or a loop (loop is hardcoding one color, function/method is possibly changable)
+    //lights.
     m_led.setData(m_LedBuffer);
     m_led.start();
   }
-/**
-  @Override
-  public Object testingMethod(){
 
-    return null;
-  }
-
-   */
 }

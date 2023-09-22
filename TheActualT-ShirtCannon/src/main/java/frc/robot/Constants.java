@@ -25,6 +25,9 @@ public final class Constants {
   public static int MIDDLE_BARREL = 3;
   public static int RIGHT_BARREL = 5;
 
+  //lights
+  public static int LED_STRIP = 9;
+
 
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;

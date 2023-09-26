@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -14,10 +16,18 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
+
+  //MY CHANGES ARE BELOW
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-
   private RobotContainer m_robotContainer;
+  //declaring the lights
+  private AddressableLED m_led;
+  //declaring the amount of leds on the led strip (example is 60)
+  private  AddressableLEDBuffer m_LedBuffer;
+  //IDK why this is needed (apparently its to store the last hue of the first pixel)
+  private int m_rainbowMakerPixelStorage;
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -28,6 +38,30 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    
+    
+    
+   
+
+    //declaring the lights
+    m_led = new AddressableLED(Constants.LED_STRIP);
+    //declaring the amount of leds on the led strip (example is 60)
+    m_LedBuffer = new AddressableLEDBuffer(60);
+   
+    m_led.setLength(m_LedBuffer.getLength());
+    //set the data and start the leds
+    m_led.setData(m_LedBuffer);
+    m_led.start();
+  }
+
+  //MORE OF MY CHANGES
+  private void testing() {
+      for (var i=0; i< m_LedBuffer.getLength(); i++){
+        final var hue = (m_rainbowMakerPixelStorage + (i*180/m_LedBuffer.getLength()))%180;
+        m_LedBuffer.setHSV(i, hue, 255, 255);
+      }
+      m_rainbowMakerPixelStorage+=3;
+      m_rainbowMakerPixelStorage %=180;
   }
 
   /**
@@ -39,6 +73,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    //ALSO MY CHANGES
+    testing();
+    m_led.setData(m_LedBuffer);
+
+
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic

@@ -5,6 +5,7 @@
 package frc.robot.commands;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.cannonSub;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
@@ -30,9 +31,10 @@ public class cannonComm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    SmartDashboard.putNumber("Desired Fire Pressure", cannonSub.desPressure);
+
     //moving the arm
     if((RobotContainer.controller1.getPOV()) == 0){
-
       cannonSub.arm.set(-.75);
     }
     
@@ -43,29 +45,49 @@ public class cannonComm extends CommandBase {
     else{
       cannonSub.arm.set(0);
     }
+
+    /* if (!cannonSub.pressureBar.get() && RobotContainer.controller1.getRightTriggerAxis() > 0.1) {
+      cannonSub.pressureBar.set(true);
+    } else if (RobotContainer.controller1.getLeftTriggerAxis() > 0.1) {
+      cannonSub.pressureBar.set(false);
+    } */
+
     //left barrel
+    //if((RobotContainer.controller1.getXButton()==true) && (Math.abs(RobotContainer.controller1.getRightTrigger()) > 0.1)&&(Math.abs(RobotContainer.controller1.getLeftTrigger()) > 0.1)){
     if((RobotContainer.controller1.getXButton()==true) && (RobotContainer.controller1.getRightBumper() == true)&&(RobotContainer.controller1.getLeftBumper() == true)){
       cannonSub.bar1.set(true);
       cannonSub.bar2.set(false);
       cannonSub.bar3.set(false);
+      cannonSub.pressureBar.set(false);
     //middle barrel
     }
+    //else if((RobotContainer.controller1.getAButton()==true) && (Math.abs(RobotContainer.controller1.getRightTrigger()) > 0.1)&&(Math.abs(RobotContainer.controller1.getLeftTrigger()) > 0.1)){
     else if((RobotContainer.controller1.getAButton()==true )&& (RobotContainer.controller1.getRightBumper() == true) && (RobotContainer.controller1.getLeftBumper() == true) ){
       cannonSub.bar1.set(false);
       cannonSub.bar2.set(true);
       cannonSub.bar3.set(false);
+      cannonSub.pressureBar.set(false);
     }
     //right barrel
+    //else if((RobotContainer.controller1.getBButton()==true) && (Math.abs(RobotContainer.controller1.getRightTrigger()) > 0.1)&&(Math.abs(RobotContainer.controller1.getLeftTrigger()) > 0.1)){
     else if((RobotContainer.controller1.getBButton()==true )&& (RobotContainer.controller1.getRightBumper() == true)&& (RobotContainer.controller1.getLeftBumper() == true)  ){
       cannonSub.bar1.set(false);
       cannonSub.bar2.set(false);
       cannonSub.bar3.set(true);
+      cannonSub.pressureBar.set(false);
+    }
+    else if((RobotContainer.controller1.getYButton()==true )&& (RobotContainer.controller1.getRightBumper() == true)&& (RobotContainer.controller1.getLeftBumper() == true)  ){
+      cannonSub.bar1.set(false);
+      cannonSub.bar2.set(false);
+      cannonSub.bar3.set(false);
+      cannonSub.pressureBar.set(true);
     }
     //safties not pressed
     else{
       cannonSub.bar1.set(false);
       cannonSub.bar2.set(false);
       cannonSub.bar3.set(false);
+      cannonSub.pressureBar.set(false);
     }
   }
 

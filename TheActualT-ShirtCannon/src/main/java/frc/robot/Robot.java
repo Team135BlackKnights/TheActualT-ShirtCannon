@@ -55,15 +55,20 @@ public class Robot extends TimedRobot {
   }
 
   //MORE OF MY CHANGES
+  
   private void testing() {
       for (var i=0; i< m_LedBuffer.getLength(); i++){
+        /**
         final var hue = (m_rainbowMakerPixelStorage + (i*180/m_LedBuffer.getLength()))%180;
         m_LedBuffer.setHSV(i, hue, 255, 255);
+         */
+        m_LedBuffer.setRGB(i, 255, 255, 204);
       }
-      m_rainbowMakerPixelStorage+=3;
-      m_rainbowMakerPixelStorage %=180;
+      
+      //m_rainbowMakerPixelStorage+=3;
+      //m_rainbowMakerPixelStorage %=180;
   }
-
+  
   /**
    * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
    * that you want ran during disabled, autonomous, teleoperated and test.

@@ -23,11 +23,11 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
   //declaring the lights
-  private AddressableLED m_led;
+  //private AddressableLED m_led;
   //declaring the amount of leds on the led strip (example is 60)
-  private  AddressableLEDBuffer m_LedBuffer;
+  //private  AddressableLEDBuffer m_LedBuffer;
   //IDK why this is needed (apparently its to store the last hue of the first pixel)
-  private int m_rainbowMakerPixelStorage;
+  //private int m_rainbowMakerPixelStorage;
 
 
   /**
@@ -36,51 +36,50 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    try (// Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-AddressableLED leftLeds = new AddressableLED(0)) {
-  AddressableLEDBuffer leftBuffer = new AddressableLEDBuffer(41);
-  AddressableLEDBuffer rightBuffer = new AddressableLEDBuffer(39);
-   try (AddressableLED rightLeds = new AddressableLED(9)) {
+
     m_robotContainer = new RobotContainer();
-    leftLeds.setLength(leftBuffer.getLength());
-    for (var i = 0; i < leftBuffer.getLength(); i++ ) {
-      leftBuffer.setRGB(i,255,204,0);
-      
-    }
-    for (var i = 0; i < rightBuffer.getLength(); i++ ) {
-      rightBuffer.setRGB(i,255,204,0);
-      
-    }
-   leftLeds.setData(leftBuffer);
-   rightLeds.setData(leftBuffer);
+  
+      AddressableLED leftLeds = new AddressableLED(0);
+        AddressableLEDBuffer leftBuffer = new AddressableLEDBuffer(41);
+       // AddressableLEDBuffer rightBuffer = new AddressableLEDBuffer(39);
+       //AddressableLED rightLeds = new AddressableLED(9);
+          m_robotContainer = new RobotContainer();
+          leftLeds.setLength(leftBuffer.getLength());
+          //rightLeds.setLength(rightBuffer.getLength());
+          leftLeds.start();
+          //rightLeds.start();
+          for (var i = 0; i < leftBuffer.getLength(); i++ ) {
+            leftBuffer.setRGB(i,255,204,0);
+            
+          }
+         // for (var i = 0; i < rightBuffer.getLength(); i++ ) {
+          //  rightBuffer.setRGB(i,255,204,0);
+            
+          
+         leftLeds.setData(leftBuffer);
+         //rightLeds.setData(leftBuffer);
+         leftLeds.close();
+         //rightLeds.close();
+        
   }
-}
- //declaring the lights
-    m_led = new AddressableLED(Constants.LED_STRIP);
-    //declaring the amount of leds on the led strip (example is 60)
-    m_LedBuffer = new AddressableLEDBuffer(60);
-   
-    m_led.setLength(m_LedBuffer.getLength());
-    //set the data and start the leds
-    m_led.setData(m_LedBuffer);
-    m_led.start();
-  }
+
 
   //MORE OF MY CHANGES
   
-  private void testing() {
-      for (var i=0; i< m_LedBuffer.getLength(); i++){
-        /**
-        final var hue = (m_rainbowMakerPixelStorage + (i*180/m_LedBuffer.getLength()))%180;
-        m_LedBuffer.setHSV(i, hue, 255, 255);
-         */
-        m_LedBuffer.setRGB(i, 255, 255, 204);
-      }
+  //private void testing() {
+     // for (var i=0; i< m_LedBuffer.getLength(); i++){
+        
+       // final var hue = (m_rainbowMakerPixelStorage + (i*180/m_LedBuffer.getLength()))%180;
+      // m_LedBuffer.setHSV(i, hue, 255, 255);
+         
+       // m_LedBuffer.setRGB(i, 255, 255, 204);
+     // }
       
       //m_rainbowMakerPixelStorage+=3;
       //m_rainbowMakerPixelStorage %=180;
-  }
+  
   
   /**
    * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
@@ -92,8 +91,8 @@ AddressableLED leftLeds = new AddressableLED(0)) {
   @Override
   public void robotPeriodic() {
     //ALSO MY CHANGES
-    testing();
-    m_led.setData(m_LedBuffer);
+    //testing();
+    //m_led.setData(m_LedBuffer);
 
 
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled

@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -35,15 +36,27 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+    try (// Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+AddressableLED leftLeds = new AddressableLED(0)) {
+  AddressableLEDBuffer leftBuffer = new AddressableLEDBuffer(41);
+  AddressableLEDBuffer rightBuffer = new AddressableLEDBuffer(39);
+   try (AddressableLED rightLeds = new AddressableLED(9)) {
     m_robotContainer = new RobotContainer();
-    
-    
-    
-   
-
-    //declaring the lights
+    leftLeds.setLength(leftBuffer.getLength());
+    for (var i = 0; i < leftBuffer.getLength(); i++ ) {
+      leftBuffer.setRGB(i,255,204,0);
+      
+    }
+    for (var i = 0; i < rightBuffer.getLength(); i++ ) {
+      rightBuffer.setRGB(i,255,204,0);
+      
+    }
+   leftLeds.setData(leftBuffer);
+   rightLeds.setData(leftBuffer);
+  }
+}
+ //declaring the lights
     m_led = new AddressableLED(Constants.LED_STRIP);
     //declaring the amount of leds on the led strip (example is 60)
     m_LedBuffer = new AddressableLEDBuffer(60);

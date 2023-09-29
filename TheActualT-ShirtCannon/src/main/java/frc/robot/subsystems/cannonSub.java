@@ -21,7 +21,7 @@ public class cannonSub extends SubsystemBase {
   public Solenoid bar1 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.LEFT_BARREL);
   public Solenoid bar2 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.MIDDLE_BARREL);
   public Solenoid bar3 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.RIGHT_BARREL);
-  public Solenoid pressureCon = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.PRESSURE_CONTROL);
+  //public Solenoid pressureCon = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.PRESSURE_CONTROL);
   public WPI_TalonSRX arm = new WPI_TalonSRX(Constants.ARM_MOTOR);
 
   /**

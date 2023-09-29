@@ -6,7 +6,9 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
+import frc.robot.commands.cannonComm;
 import frc.robot.commands.driveCommand;
+import frc.robot.subsystems.cannonSub;
 import frc.robot.subsystems.driveSub;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -21,7 +23,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final driveSub m_exampleSubsystem = new driveSub();
+  private final driveSub m_driveSub = new driveSub();
+  private final cannonSub m_cannonSub = new cannonSub();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   public static final XboxController controller1 =
@@ -29,7 +32,8 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_exampleSubsystem.setDefaultCommand(new driveCommand(m_exampleSubsystem));
+    m_driveSub.setDefaultCommand(new driveCommand(m_driveSub));
+    m_cannonSub.setDefaultCommand(new cannonComm(m_cannonSub));
     // Configure the trigger bindings
     configureBindings();
   }
@@ -54,6 +58,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    return Autos.exampleAuto(m_driveSub);
   }
 }

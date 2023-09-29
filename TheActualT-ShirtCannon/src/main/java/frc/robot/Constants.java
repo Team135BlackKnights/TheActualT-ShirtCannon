@@ -22,9 +22,9 @@ public final class Constants {
   public static int ARM_MOTOR = 19;
   //solonoid cannons
   public static int LEFT_BARREL = 1;
-  public static int MIDDLE_BARREL = 3;
-  public static int RIGHT_BARREL = 5;
-  public static int PRESSURE_RELEASE = 7;
+  public static int MIDDLE_BARREL = 2;
+  public static int RIGHT_BARREL = 3;
+  public static int PRESSURE_CONTROL = 5;
 
   //lights
   public static int LED_STRIP = 9;

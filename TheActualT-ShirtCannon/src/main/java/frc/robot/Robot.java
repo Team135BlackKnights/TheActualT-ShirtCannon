@@ -41,27 +41,26 @@ public class Robot extends TimedRobot {
 
     m_robotContainer = new RobotContainer();
   
-      AddressableLED leftLeds = new AddressableLED(0);
-        AddressableLEDBuffer leftBuffer = new AddressableLEDBuffer(41);
-       // AddressableLEDBuffer rightBuffer = new AddressableLEDBuffer(39);
-       //AddressableLED rightLeds = new AddressableLED(9);
-          m_robotContainer = new RobotContainer();
-          leftLeds.setLength(leftBuffer.getLength());
-          //rightLeds.setLength(rightBuffer.getLength());
-          leftLeds.start();
-          //rightLeds.start();
-          for (var i = 0; i < leftBuffer.getLength(); i++ ) {
-            leftBuffer.setRGB(i,255,204,0);
+    AddressableLED leftLeds = new AddressableLED(0);
+    AddressableLEDBuffer leftBuffer = new AddressableLEDBuffer(80);
+    //AddressableLEDBuffer rightBuffer = new AddressableLEDBuffer(39);
+    //AddressableLED rightLeds = new AddressableLED(9);
+    m_robotContainer = new RobotContainer();
+    leftLeds.setLength(leftBuffer.getLength());
+    //rightLeds.setLength(rightBuffer.getLength());
+    leftLeds.start();
+    //rightLeds.start();
+    for (var i = 0; i < leftBuffer.getLength(); i++ ) {
+      leftBuffer.setRGB(i,255,225,53);
+    }
+    //for (var i = 0; i < rightBuffer.getLength(); i++ ) {
+    //rightBuffer.setRGB(i,255,204,0);
+    //}
             
-          }
-         // for (var i = 0; i < rightBuffer.getLength(); i++ ) {
-          //  rightBuffer.setRGB(i,255,204,0);
-            
-          
-         leftLeds.setData(leftBuffer);
-         //rightLeds.setData(leftBuffer);
-         leftLeds.close();
-         //rightLeds.close();
+    leftLeds.setData(leftBuffer);
+    //rightLeds.setData(leftBuffer);
+    leftLeds.close();
+    //rightLeds.close();
         
   }
 

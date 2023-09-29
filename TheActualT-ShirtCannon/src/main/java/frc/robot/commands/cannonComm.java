@@ -48,28 +48,28 @@ public class cannonComm extends CommandBase {
       cannonSub.bar1.set(true);
       cannonSub.bar2.set(false);
       cannonSub.bar3.set(false);
-      cannonSub.pressureRelease.set(false);
+      cannonSub.pressureCon.set(false);
     //middle barrel
     }
     else if((RobotContainer.controller1.getAButton()==true )&& (RobotContainer.controller1.getRightBumper() == true) && (RobotContainer.controller1.getLeftBumper() == true) ){
       cannonSub.bar1.set(false);
       cannonSub.bar2.set(true);
       cannonSub.bar3.set(false);
-      cannonSub.pressureRelease.set(false);
+      cannonSub.pressureCon.set(false);
     }
     //right barrel
     else if((RobotContainer.controller1.getBButton()==true )&& (RobotContainer.controller1.getRightBumper() == true)&& (RobotContainer.controller1.getLeftBumper() == true)  ){
       cannonSub.bar1.set(false);
       cannonSub.bar2.set(false);
       cannonSub.bar3.set(true);
-      cannonSub.pressureRelease.set(false);
+      cannonSub.pressureCon.set(false);
     }
     //safties not pressed
     else{
       cannonSub.bar1.set(false);
       cannonSub.bar2.set(false);
       cannonSub.bar3.set(false);
-      cannonSub.pressureRelease.set(true);
+      cannonSub.pressureCon.set(true);
     }
   }
 

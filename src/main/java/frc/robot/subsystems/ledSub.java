@@ -13,6 +13,9 @@ public class ledSub extends SubsystemBase {
         ledBuffer = new AddressableLEDBuffer(ledConstants.ledLength);
         led.setLength(ledBuffer.getLength());
     }
+    @Override public void periodic(){
+        setColorWave(23,255,16);
+    }
     public void setColorWave(int h, int s, double sinePeriod){//value is basically how dark it is, is controlled by the wave function
         Thread updateThread = new Thread(
         () -> {

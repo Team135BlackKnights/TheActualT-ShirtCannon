@@ -1,9 +1,9 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.cannonSub;
 
-public class adjustPressure extends CommandBase {
+public class adjustPressure extends Command {
     private final cannonSub cannonSub;
     private boolean isFinished = false;
     private int adj;

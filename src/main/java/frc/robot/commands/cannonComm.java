@@ -6,10 +6,10 @@ package frc.robot.commands;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.cannonSub;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
-public class cannonComm extends CommandBase {
+public class cannonComm extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final cannonSub cannonSub;
 
@@ -82,7 +82,7 @@ public class cannonComm extends CommandBase {
       cannonSub.bar3.set(false);
       cannonSub.pressureBar.set(true);
     }
-    //safties not pressed
+    //safeties not pressed
     else{
       cannonSub.bar1.set(false);
       cannonSub.bar2.set(false);

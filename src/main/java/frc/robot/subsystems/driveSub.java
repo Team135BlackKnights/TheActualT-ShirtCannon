@@ -4,9 +4,10 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -18,14 +19,17 @@ public class driveSub extends SubsystemBase {
   public final WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR);
   public final WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR);
   
-  MotorControllerGroup leftSide = new MotorControllerGroup(frontLeft, backLeft);
-  MotorControllerGroup rightSide = new MotorControllerGroup(frontRight, backRight);
 
-  DifferentialDrive tankDrive = new DifferentialDrive(leftSide, rightSide);
+  
+
+  DifferentialDrive tankDrive = new DifferentialDrive(frontLeft, frontRight);
 
   /** Creates a new ExampleSubsystem. */
   public driveSub() {
-    leftSide.setInverted(true);
+    backLeft.set(ControlMode.Follower,0);
+    backLeft.follow(frontLeft, FollowerType.PercentOutput);
+    backRight.set(ControlMode.Follower, 0);
+    backRight.follow(frontRight, FollowerType.PercentOutput);
   }
 
   public void tankDrive(double left, double right){

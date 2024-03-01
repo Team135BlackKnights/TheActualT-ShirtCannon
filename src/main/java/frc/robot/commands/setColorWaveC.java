@@ -2,11 +2,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ledSub;
 
-public class setColorWave extends Command {
+public class setColorWaveC extends Command {
     ledSub leds;
     double offset;
     double InitialLoopValue;
-    public setColorWave(ledSub subsystem){
+    public setColorWaveC(ledSub subsystem){
         this.leds = subsystem;
         addRequirements(subsystem);
     }    

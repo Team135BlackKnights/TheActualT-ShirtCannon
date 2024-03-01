@@ -11,14 +11,15 @@ import frc.robot.commands.driveCommand;
 import frc.robot.commands.ledSpinUp;
 import frc.robot.subsystems.cannonSub;
 import frc.robot.subsystems.driveSub;
+import frc.robot.commands.fireSolenoidC;
+import frc.robot.commands.setColorWaveC;
 import frc.robot.subsystems.ledSub;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.setColorWave;
-import frc.robot.commands.fireSolenoid;
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -30,6 +31,8 @@ public class RobotContainer {
   private final driveSub driveSub = new driveSub();
   private final cannonSub cannonSub = new cannonSub();
   private final ledSub ledSub = new ledSub();
+  private ledSpinUp ledSpinUp = new ledSpinUp(ledSub);
+  private setColorWaveC setColorWave = new setColorWaveC(ledSub);
   private final ledSpinUp ledAccelerate = new ledSpinUp(ledSub);
   
   //final JoystickButton rBumper = new JoystickButton(controller1, 5);
@@ -43,7 +46,7 @@ public class RobotContainer {
   public RobotContainer() {
     driveSub.setDefaultCommand(new driveCommand(driveSub));
     cannonSub.setDefaultCommand(new cannonComm(cannonSub));
-    ledSub.setDefaultCommand(new setColorWave(ledSub));
+    ledSub.setDefaultCommand(setColorWave);
     // Configure the trigger bindings
     configureBindings();
   }
@@ -62,9 +65,9 @@ public class RobotContainer {
     Trigger leftBarrelTrigger = new Trigger(this::fireLeftBarrel);
     Trigger middleBarrelTrigger = new Trigger(this::fireMiddleBarrel);
     Trigger rightBarrelTrigger = new Trigger(this::fireRightBarrel);
-    leftBarrelTrigger.onTrue(new SequentialCommandGroup(ledAccelerate, new fireSolenoid(cannonSub, new boolean[]{true,false,false,false})));
-    middleBarrelTrigger.onTrue(new SequentialCommandGroup(ledAccelerate, new fireSolenoid(cannonSub, new boolean[]{false,true,false,false})));
-    rightBarrelTrigger.onTrue(new SequentialCommandGroup(ledAccelerate, new fireSolenoid(cannonSub, new boolean[]{true,false,false,false})));
+    //leftBarrelTrigger.onTrue(new SequentialCommandGroup(ledAccelerate, new fireSolenoidC(cannonSub, new boolean[]{true,false,false,false})));
+    //middleBarrelTrigger.onTrue(new SequentialCommandGroup(ledAccelerate, new fireSolenoidC(cannonSub, new boolean[]{false,true,false,false})));
+    //rightBarrelTrigger.onTrue(new SequentialCommandGroup(ledAccelerate, new fireSolenoidC(cannonSub, new boolean[]{true,false,false,false})));
   }
 
   /**

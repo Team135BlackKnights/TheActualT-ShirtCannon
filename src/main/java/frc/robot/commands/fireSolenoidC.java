@@ -4,10 +4,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.cannonSub;
 
 
-public class fireSolenoid extends Command {
+public class fireSolenoidC extends Command {
     cannonSub subsystem;
     boolean[] solenoidStates;
-    public fireSolenoid (cannonSub subsystem, boolean[] solenoidStates){
+    public fireSolenoidC (cannonSub subsystem, boolean[] solenoidStates){
         this.subsystem = subsystem;
         this.solenoidStates = solenoidStates;
         addRequirements(subsystem);

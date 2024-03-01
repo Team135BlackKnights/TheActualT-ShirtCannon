@@ -11,11 +11,13 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.Timer;
 
 public class cannonSub extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   public cannonSub() {}
-
+  Timer timer = new Timer();
+  public double commandSecondsOpen = .2;
   public int desPressure = 100;
  
   //solonoid declaration  
@@ -57,5 +59,30 @@ public class cannonSub extends SubsystemBase {
   @Override
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
+  }
+  /**
+   * Takes in an array with 4 booleans, with each boolean representing whether a solenoid is on (true) or off (false). Intended to be used with controller input
+   * @param solenoidStates
+   * The array containing the state of each solenoid (0 is middle, 1 is right, 2 is left, 3 is the pressure bar)
+   */
+  public void setSolenoids(boolean[] solenoidStates){
+    bar1.set(solenoidStates[0]);
+      bar2.set(solenoidStates[1]);
+      bar3.set(solenoidStates[2]);
+      pressureBar.set(solenoidStates[3]);
+  }
+
+  /**
+   * Similar to setSolenoids, but automatically closes the solenoids after a set time. Designed to be called as an instantCommand
+   * @param solenoidStates
+   */
+  public void fireSingleSolenoid(boolean[] solenoidStates){
+    timer.stop();
+    timer.reset();
+    timer.start();
+    setSolenoids(solenoidStates);
+    if (timer.hasElapsed(commandSecondsOpen)){
+      setSolenoids(new boolean[]{false,false,false,false});
+    }
   }
 }

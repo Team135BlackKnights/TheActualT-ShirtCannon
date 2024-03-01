@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class cannonComm extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final cannonSub cannonSub;
-
+  public boolean[] solenoidStates = new boolean[]{false,false,false,false};
   /**
    * Creates a new ExampleCommand.
    *
@@ -51,10 +51,40 @@ public class cannonComm extends Command {
     } else if (RobotContainer.controller1.getLeftTriggerAxis() > 0.1) {
       cannonSub.pressureBar.set(false);
     } */
-
+    
     //left barrel
     //if((RobotContainer.controller1.getXButton()==true) && (Math.abs(RobotContainer.controller1.getRightTrigger()) > 0.1)&&(Math.abs(RobotContainer.controller1.getLeftTrigger()) > 0.1)){
-    if((RobotContainer.controller1.getXButton()==true) && (RobotContainer.controller1.getRightBumper() == true)&&(RobotContainer.controller1.getLeftBumper() == true)){
+    
+    if (RobotContainer.controller1.getLeftBumper() && RobotContainer.controller1.getRightBumper()){
+      
+      if (RobotContainer.controller1.getXButton()){
+        
+        //middle barrel
+        solenoidStates[0] = true;
+      }
+      else if (RobotContainer.controller1.getAButton()){
+        
+        //right barrel
+        solenoidStates[1] = true;
+      }
+      else if (RobotContainer.controller1.getBButton()){
+        
+        //left barrel (i think)
+        solenoidStates[2] = true;
+      }
+      else if (RobotContainer.controller1.getYButton()){
+        
+        //some 4th solenoid that hasn't been added yet
+        solenoidStates[3] = true;
+      }
+    }
+    else{
+      solenoidStates = new boolean[]{false,false,false,false};
+    }
+    cannonSub.setSolenoids(solenoidStates);
+  }
+    
+    /*if((RobotContainer.controller1.getXButton()==true) && (RobotContainer.controller1.getRightBumper() == true)&&(RobotContainer.controller1.getLeftBumper() == true)){
       cannonSub.bar1.set(true);
       cannonSub.bar2.set(false);
       cannonSub.bar3.set(false);
@@ -90,7 +120,7 @@ public class cannonComm extends Command {
       cannonSub.pressureBar.set(false);
     }
   }
-
+*/
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}

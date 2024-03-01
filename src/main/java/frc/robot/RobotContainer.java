@@ -65,9 +65,9 @@ public class RobotContainer {
     Trigger leftBarrelTrigger = new Trigger(this::fireLeftBarrel);
     Trigger middleBarrelTrigger = new Trigger(this::fireMiddleBarrel);
     Trigger rightBarrelTrigger = new Trigger(this::fireRightBarrel);
-    //leftBarrelTrigger.onTrue(new SequentialCommandGroup(ledAccelerate, new fireSolenoidC(cannonSub, new boolean[]{true,false,false,false})));
-    //middleBarrelTrigger.onTrue(new SequentialCommandGroup(ledAccelerate, new fireSolenoidC(cannonSub, new boolean[]{false,true,false,false})));
-    //rightBarrelTrigger.onTrue(new SequentialCommandGroup(ledAccelerate, new fireSolenoidC(cannonSub, new boolean[]{true,false,false,false})));
+    leftBarrelTrigger.onTrue(new SequentialCommandGroup(new ledSpinUp(ledSub), new fireSolenoidC(cannonSub, new boolean[]{true,false,false,false})));
+    middleBarrelTrigger.onTrue(new SequentialCommandGroup(new ledSpinUp(ledSub), new fireSolenoidC(cannonSub, new boolean[]{false,true,false,false})));
+    rightBarrelTrigger.onTrue(new SequentialCommandGroup(new ledSpinUp(ledSub), new fireSolenoidC(cannonSub, new boolean[]{true,false,false,false})));
   }
 
   /**

@@ -29,7 +29,7 @@ public class driveCommand extends Command {
   public void execute() {
     double left = RobotContainer.controller1.getLeftY();
     double right = RobotContainer.controller1.getRightY();
-    driveSub.tankDrive(left, right);
+    driveSub.tankDrive(-left, -right);
   }
 
   

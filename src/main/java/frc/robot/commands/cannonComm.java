@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.commands;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.cannonSub;
@@ -31,7 +27,7 @@ public class cannonComm extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putNumber("Desired Fire Pressure", cannonSub.desPressure);
+    SmartDashboard.putNumber("Desired Fire Pressure", frc.robot.subsystems.cannonSub.desPressure);
 
     //moving the arm
     if((RobotContainer.controller1.getPOV()) == 0){
@@ -81,7 +77,7 @@ public class cannonComm extends Command {
     else{
       solenoidStates = new boolean[]{false,false,false,false};
     }
-    cannonSub.setSolenoids(solenoidStates);
+    frc.robot.subsystems.cannonSub.setSolenoids(solenoidStates);
   }
     
     /*if((RobotContainer.controller1.getXButton()==true) && (RobotContainer.controller1.getRightBumper() == true)&&(RobotContainer.controller1.getLeftBumper() == true)){

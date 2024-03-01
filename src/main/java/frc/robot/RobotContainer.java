@@ -17,7 +17,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-
+import frc.robot.commands.setColorWave;
+import frc.robot.commands.fireSolenoid;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -42,7 +43,7 @@ public class RobotContainer {
   public RobotContainer() {
     driveSub.setDefaultCommand(new driveCommand(driveSub));
     cannonSub.setDefaultCommand(new cannonComm(cannonSub));
-    
+    ledSub.setDefaultCommand(new setColorWave(ledSub));
     // Configure the trigger bindings
     configureBindings();
   }
@@ -57,8 +58,13 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    //rBumper.onTrue(new adjustPressure(cannonSub, 5));
-    //lBumper.onTrue(new adjustPresure(cannonSub, -5));
+       
+    Trigger leftBarrelTrigger = new Trigger(this::fireLeftBarrel);
+    Trigger middleBarrelTrigger = new Trigger(this::fireMiddleBarrel);
+    Trigger rightBarrelTrigger = new Trigger(this::fireRightBarrel);
+    leftBarrelTrigger.onTrue(new SequentialCommandGroup(ledAccelerate, new fireSolenoid(cannonSub, new boolean[]{true,false,false,false})));
+    middleBarrelTrigger.onTrue(new SequentialCommandGroup(ledAccelerate, new fireSolenoid(cannonSub, new boolean[]{false,true,false,false})));
+    rightBarrelTrigger.onTrue(new SequentialCommandGroup(ledAccelerate, new fireSolenoid(cannonSub, new boolean[]{true,false,false,false})));
   }
 
   /**
@@ -70,4 +76,14 @@ public class RobotContainer {
     // An example command will be run in autonomous
     return Autos.exampleAuto(driveSub);
   }
+  public boolean fireLeftBarrel(){
+    return controller1.getRightBumper() && controller1.getLeftBumper() && controller1.getXButtonPressed();
+  }
+  public boolean fireMiddleBarrel(){
+    return controller1.getRightBumper() && controller1.getLeftBumper() && controller1.getAButton();
+  }
+  public boolean fireRightBarrel(){
+    return controller1.getRightBumper() && controller1.getLeftBumper() && controller1.getBButton();
+  }
+  
 }

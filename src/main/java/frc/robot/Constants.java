@@ -34,6 +34,7 @@ public final class Constants {
   }
   public final class ledConstants{
     public static final int ledPort = 9,
-    ledLength = 92;
+    ledLength = 40,
+    chargeUpLength = 5;
   }
 }

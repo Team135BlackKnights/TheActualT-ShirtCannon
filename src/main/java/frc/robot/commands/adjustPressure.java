@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.cannonSub;
 
 public class adjustPressure extends Command {
-    private final cannonSub cannonSub;
+    cannonSub cannonSub;
     private boolean isFinished = false;
     private int adj;
     public adjustPressure(cannonSub subsystem, int adjustment) {
@@ -16,7 +16,7 @@ public class adjustPressure extends Command {
     @Override
     public void initialize() {
         isFinished = false;
-        cannonSub.desPressure += adj;
+        frc.robot.subsystems.cannonSub.desPressure += adj;
         isFinished = true;
     }
 

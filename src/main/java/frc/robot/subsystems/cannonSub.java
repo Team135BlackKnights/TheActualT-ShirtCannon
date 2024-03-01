@@ -8,7 +8,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Timer;
@@ -16,15 +15,15 @@ import edu.wpi.first.wpilibj.Timer;
 public class cannonSub extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   public cannonSub() {}
-  Timer timer = new Timer();
-  public double commandSecondsOpen = .2;
-  public int desPressure = 100;
+  static Timer timer = new Timer();
+  public static double commandSecondsOpen = .2;
+  public static int desPressure = 100;
  
   //solonoid declaration  
-  public Solenoid bar1 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.LEFT_BARREL);
-  public Solenoid bar2 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.MIDDLE_BARREL);
-  public Solenoid bar3 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.RIGHT_BARREL);
-  public Solenoid pressureBar = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.PRESSURE_CONTROL);
+  public static Solenoid bar1 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.LEFT_BARREL);
+  public static Solenoid bar2 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.MIDDLE_BARREL);
+  public static Solenoid bar3 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.RIGHT_BARREL);
+  public static Solenoid pressureBar = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.PRESSURE_CONTROL);
   public WPI_TalonSRX arm = new WPI_TalonSRX(Constants.ARM_MOTOR);
 
   /**
@@ -58,7 +57,7 @@ public class cannonSub extends SubsystemBase {
    * @param solenoidStates
    * The array containing the state of each solenoid (0 is middle, 1 is right, 2 is left, 3 is the pressure bar)
    */
-  public void setSolenoids(boolean[] solenoidStates){
+  public static void setSolenoids(boolean[] solenoidStates){
     bar1.set(solenoidStates[0]);
       bar2.set(solenoidStates[1]);
       bar3.set(solenoidStates[2]);
@@ -69,7 +68,7 @@ public class cannonSub extends SubsystemBase {
    * Similar to setSolenoids, but automatically closes the solenoids after a set time. Designed to be called as an instantCommand
    * @param solenoidStates
    */
-  public void fireSolenoids(boolean[] solenoidStates){
+  public static void fireSolenoids(boolean[] solenoidStates){
     timer.stop();
     timer.reset();
     timer.start();
@@ -78,13 +77,6 @@ public class cannonSub extends SubsystemBase {
       setSolenoids(new boolean[]{false,false,false,false});
     }
   }
-    public Command fireSolenoidCommand(boolean[]solenoidStates) {
-    // Inline construction of command goes here.
-    // Subsystem::RunOnce implicitly requires `this` subsystem.
-    return runOnce(
-        () -> {
-          this.fireSolenoids(solenoidStates);
-        });
-  }
+   
   
 }

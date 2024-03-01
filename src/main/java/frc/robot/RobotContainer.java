@@ -31,9 +31,7 @@ public class RobotContainer {
   private final driveSub driveSub = new driveSub();
   private final cannonSub cannonSub = new cannonSub();
   private final ledSub ledSub = new ledSub();
-  private ledSpinUp ledSpinUp = new ledSpinUp(ledSub);
   private setColorWaveC setColorWave = new setColorWaveC(ledSub);
-  private final ledSpinUp ledAccelerate = new ledSpinUp(ledSub);
   
   //final JoystickButton rBumper = new JoystickButton(controller1, 5);
   //final JoystickButton lBumper = new JoystickButton(controller1, 6);

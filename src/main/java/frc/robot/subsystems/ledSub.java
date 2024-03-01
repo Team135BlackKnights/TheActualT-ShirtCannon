@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ledConstants;
 public class ledSub extends SubsystemBase {
     double InitialLoopValue;
-    AddressableLED led;
-    AddressableLEDBuffer ledBuffer;
+    static AddressableLED led;
+    static AddressableLEDBuffer ledBuffer;
     public ledSub(){
         InitialLoopValue = 0;
         led = new AddressableLED(ledConstants.ledPort);
@@ -42,5 +42,31 @@ public class ledSub extends SubsystemBase {
         updateThread.setDaemon(true);
         updateThread.run();
         }
-    }
+        public static void spinUp(int length, long sleepDivisor, int offset, int[]hsv){
+            Thread spinUpThread = new Thread(
+                () -> {
+                    try{
+                       Thread.sleep(1333/sleepDivisor);
+                        for (var i = 0; i < ledBuffer.getLength()/2; i++){
+                            if (offset<i && i<(offset+length)){
+                                ledBuffer.setHSV(i+offset, hsv[0], hsv[1], hsv[2]);  
+                                ledBuffer.setHSV(i+offset+20, hsv[0], hsv[1], hsv[2]); 
+                                }
+                            else{
+                                ledBuffer.setHSV(i+offset, hsv[0], hsv[1], hsv[2]);
+                                ledBuffer.setHSV(i+20+offset, hsv[0], hsv[1], hsv[2]);
+                            }
+                            } 
+                            led.setData(ledBuffer);
+                        }
+                    
+                    catch (Exception e){
+
+                    }
+                }
+            );
+            spinUpThread.setDaemon(true);
+            spinUpThread.run();
+        }
+}
 

@@ -32,14 +32,7 @@ public class cannonSub extends SubsystemBase {
    *
    * @return a command
    */
-  public Command exampleMethodCommand() {
-    // Inline construction of command goes here.
-    // Subsystem::RunOnce implicitly requires `this` subsystem.
-    return runOnce(
-        () -> {
-          /* one-time action goes here */
-        });
-  }
+
 
   /**
    * An example method querying a boolean state of the subsystem (for example, a digital sensor).
@@ -76,7 +69,7 @@ public class cannonSub extends SubsystemBase {
    * Similar to setSolenoids, but automatically closes the solenoids after a set time. Designed to be called as an instantCommand
    * @param solenoidStates
    */
-  public void fireSingleSolenoid(boolean[] solenoidStates){
+  public void fireSolenoids(boolean[] solenoidStates){
     timer.stop();
     timer.reset();
     timer.start();
@@ -85,4 +78,13 @@ public class cannonSub extends SubsystemBase {
       setSolenoids(new boolean[]{false,false,false,false});
     }
   }
+    public Command fireSolenoidCommand(boolean[]solenoidStates) {
+    // Inline construction of command goes here.
+    // Subsystem::RunOnce implicitly requires `this` subsystem.
+    return runOnce(
+        () -> {
+          this.fireSolenoids(solenoidStates);
+        });
+  }
+  
 }

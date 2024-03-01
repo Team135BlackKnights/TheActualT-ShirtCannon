@@ -27,6 +27,7 @@ public class RobotContainer {
   private final driveSub driveSub = new driveSub();
   private final cannonSub cannonSub = new cannonSub();
   private final ledSub ledSub = new ledSub();
+  
   //final JoystickButton rBumper = new JoystickButton(controller1, 5);
   //final JoystickButton lBumper = new JoystickButton(controller1, 6);
 
@@ -38,6 +39,7 @@ public class RobotContainer {
   public RobotContainer() {
     driveSub.setDefaultCommand(new driveCommand(driveSub));
     cannonSub.setDefaultCommand(new cannonComm(cannonSub));
+    
     // Configure the trigger bindings
     configureBindings();
   }

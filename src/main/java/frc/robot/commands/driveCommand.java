@@ -6,6 +6,7 @@ package frc.robot.commands;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.driveSub;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /** An example command that uses an example subsystem. */
 public class driveCommand extends Command {
@@ -30,6 +31,12 @@ public class driveCommand extends Command {
     double left = RobotContainer.controller1.getLeftY();
     double right = RobotContainer.controller1.getRightY();
     driveSub.tankDrive(-left, -right);
+    if (RobotContainer.controller1.getAButton()){
+      SmartDashboard.putBoolean("working", true);
+    }
+    else{
+      SmartDashboard.putBoolean("working", false);
+    }
   }
 
   

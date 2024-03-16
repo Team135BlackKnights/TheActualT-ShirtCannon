@@ -15,7 +15,6 @@ import com.ctre.phoenix.motorcontrol.TalonSRXSimCollection;
 import edu.wpi.first.wpilibj.simulation.SolenoidSim;
 import frc.robot.subsystems.cannonSub;
 import edu.wpi.first.wpilibj.simulation.XboxControllerSim;
-import frc.robot.RobotContainer;
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -25,7 +24,7 @@ import frc.robot.RobotContainer;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
-  final XboxControllerSim controllerSim = new XboxControllerSim(RobotContainer.controller1);
+  final XboxControllerSim controllerSim = new XboxControllerSim(0);
     AddressableLEDSim ledSim = new AddressableLEDSim(ledSub.led);
     
     TalonSRXSimCollection frontLeftSim = driveSub.frontLeft.getSimCollection();
@@ -36,7 +35,7 @@ public class Robot extends TimedRobot {
     SolenoidSim bar1Sim = new SolenoidSim(Constants.HardwareConstants.hubType, Constants.LEFT_BARREL);
     SolenoidSim bar2Sim = new SolenoidSim(Constants.HardwareConstants.hubType, Constants.MIDDLE_BARREL);
     SolenoidSim bar3Sim = new SolenoidSim(Constants.HardwareConstants.hubType, Constants.RIGHT_BARREL);
-    SolenoidSim bar4Sim = new SolenoidSim(Constants.HardwareConstants.hubType, Constants.PRESSURE_CONTROL);
+    SolenoidSim pressureControlSim = new SolenoidSim(Constants.HardwareConstants.hubType, Constants.PRESSURE_CONTROL);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -118,12 +117,16 @@ public class Robot extends TimedRobot {
   /** This function is called once when the robot is first started up. */
   @Override
   public void simulationInit() {
-    
+
     
   }
 
   /** This function is called periodically whilst in simulation. */
   @Override
   public void simulationPeriodic() {
+    bar1Sim.setOutput(Constants.cannonStates[0]);
+    bar2Sim.setOutput(Constants.cannonStates[1]);
+    bar3Sim.setOutput(Constants.cannonStates[2]);
+    pressureControlSim.setOutput(Constants.cannonStates[3]);
   }
 }

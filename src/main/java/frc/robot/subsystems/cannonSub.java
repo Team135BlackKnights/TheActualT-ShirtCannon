@@ -24,7 +24,7 @@ public class cannonSub extends SubsystemBase {
   public static Solenoid bar2 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.MIDDLE_BARREL);
   public static Solenoid bar3 = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.RIGHT_BARREL);
   public static Solenoid pressureBar = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.PRESSURE_CONTROL);
-  public WPI_TalonSRX arm = new WPI_TalonSRX(Constants.ARM_MOTOR);
+  public static WPI_TalonSRX arm = new WPI_TalonSRX(Constants.ARM_MOTOR);
 
   /**
    * Example command factory method.
@@ -62,6 +62,7 @@ public class cannonSub extends SubsystemBase {
       bar2.set(solenoidStates[1]);
       bar3.set(solenoidStates[2]);
       pressureBar.set(solenoidStates[3]);
+      Constants.cannonStates = solenoidStates;
   }
 
   /**

@@ -27,17 +27,7 @@ public class ledSpinUp extends Command{
 
     @Override
     public void execute(){
-        ledSub.spinUp(length,sleepDivisor,offset,hsv);
-        offset +=1;
-        offset %=20;
-        timesRan += 1;
-        if (timesRan == 8){
-            end(false);
-        }
-        if (timesRan%2 == 0){
-            sleepDivisor +=.5;
-            length += 2;
-        }
+       
     }
     @Override 
     public void end(boolean interrupted){

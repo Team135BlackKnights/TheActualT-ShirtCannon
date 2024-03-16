@@ -7,7 +7,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
+import edu.wpi.first.wpilibj.simulation.AddressableLEDSim;
+import frc.robot.Constants.ledConstants;
+import frc.robot.subsystems.driveSub;
+import frc.robot.subsystems.ledSub;
+import com.ctre.phoenix.motorcontrol.TalonSRXSimCollection;
+import edu.wpi.first.wpilibj.simulation.SolenoidSim;
+import frc.robot.subsystems.cannonSub;
+import edu.wpi.first.wpilibj.simulation.XboxControllerSim;
+import frc.robot.RobotContainer;
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -16,8 +24,19 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-
   private RobotContainer m_robotContainer;
+  final XboxControllerSim controllerSim = new XboxControllerSim(RobotContainer.controller1);
+    AddressableLEDSim ledSim = new AddressableLEDSim(ledSub.led);
+    
+    TalonSRXSimCollection frontLeftSim = driveSub.frontLeft.getSimCollection();
+    TalonSRXSimCollection frontRightSim = driveSub.frontRight.getSimCollection();
+    TalonSRXSimCollection backLefSimCollection = driveSub.backLeft.getSimCollection();
+    TalonSRXSimCollection backRightSimCollection = driveSub.backRight.getSimCollection();
+    TalonSRXSimCollection cannonSubSimCollection = cannonSub.arm.getSimCollection();
+    SolenoidSim bar1Sim = new SolenoidSim(Constants.HardwareConstants.hubType, Constants.LEFT_BARREL);
+    SolenoidSim bar2Sim = new SolenoidSim(Constants.HardwareConstants.hubType, Constants.MIDDLE_BARREL);
+    SolenoidSim bar3Sim = new SolenoidSim(Constants.HardwareConstants.hubType, Constants.RIGHT_BARREL);
+    SolenoidSim bar4Sim = new SolenoidSim(Constants.HardwareConstants.hubType, Constants.PRESSURE_CONTROL);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -28,6 +47,9 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    ledSim.setLength(ledConstants.ledLength);
+    ledSim.setInitialized(true);
+    
   }
 
   /**
@@ -95,9 +117,13 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when the robot is first started up. */
   @Override
-  public void simulationInit() {}
+  public void simulationInit() {
+    
+    
+  }
 
   /** This function is called periodically whilst in simulation. */
   @Override
-  public void simulationPeriodic() {}
+  public void simulationPeriodic() {
+  }
 }

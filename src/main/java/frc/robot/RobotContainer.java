@@ -12,7 +12,6 @@ import frc.robot.commands.ledSpinUp;
 import frc.robot.subsystems.cannonSub;
 import frc.robot.subsystems.driveSub;
 import frc.robot.commands.fireSolenoidC;
-import frc.robot.commands.setColorWaveC;
 import frc.robot.subsystems.ledSub;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -31,8 +30,7 @@ public class RobotContainer {
   private final driveSub driveSub = new driveSub();
   private final cannonSub cannonSub = new cannonSub();
   private final ledSub ledSub = new ledSub();
-  private setColorWaveC setColorWave = new setColorWaveC(ledSub);
-  
+
   //final JoystickButton rBumper = new JoystickButton(controller1, 5);
   //final JoystickButton lBumper = new JoystickButton(controller1, 6);
 
@@ -44,7 +42,7 @@ public class RobotContainer {
   public RobotContainer() {
     driveSub.setDefaultCommand(new driveCommand(driveSub));
     cannonSub.setDefaultCommand(new cannonComm(cannonSub));
-    ledSub.setDefaultCommand(setColorWave);
+
     // Configure the trigger bindings
     configureBindings();
   }

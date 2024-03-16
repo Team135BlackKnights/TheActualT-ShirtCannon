@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -25,16 +25,22 @@ public final class Constants {
   public static int MIDDLE_BARREL = 2;
   public static int RIGHT_BARREL = 3;
   public static int PRESSURE_CONTROL = 5;
-
+  public static boolean[] cannonStates = new boolean[4];
 
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
 
     
   }
+  public static class HardwareConstants{
+    public static PneumaticsModuleType hubType = PneumaticsModuleType.REVPH;
+  }
   public final class ledConstants{
     public static final int ledPort = 9,
     ledLength = 40,
-    chargeUpLength = 5;
+    chargeUpLength = 5,
+    sinePeriod = 16;
+    public static int[] goldHSV = new int[]{25,100,100},
+    ledSineStates = new int[ledConstants.ledLength];
   }
 }

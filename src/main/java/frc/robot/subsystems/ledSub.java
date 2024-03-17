@@ -8,7 +8,7 @@ public class ledSub extends SubsystemBase {
     public static int InitialLoopValue;
     public static AddressableLED led;
     public static int runCommand;
-    static AddressableLEDBuffer ledBuffer;
+    public static AddressableLEDBuffer ledBuffer;
     public ledSub(){
         InitialLoopValue = 0;
         led = new AddressableLED(ledConstants.ledPort);
@@ -21,11 +21,11 @@ public class ledSub extends SubsystemBase {
     }
     @Override
     public void periodic(){
-        runCommand +=1;
+        /*runCommand +=1;
         runCommand %= 3;
         if (runCommand == 0){
-            setColorWave(ledConstants.goldHSV);
-        }
+            setColorWave(ledConstants.goldHSV);*
+        }*/
     }
 
     
